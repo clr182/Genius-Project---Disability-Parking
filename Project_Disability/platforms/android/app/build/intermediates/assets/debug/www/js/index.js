@@ -40,6 +40,22 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        console.log("navigator.geolocation works well");
+
+        navigator.geolocation.getCurrentPosition(this.gpsOnSuccess, this.gpsOnError, { maximumAge: 0, timeout: 3000, enableHighAccuracy: true });
+    },
+
+    gpsOnSuccess : function(position){
+        var parentElement = document.getElementById(id);
+        var locationText = parentElement.querySelector('._text');
+
+        alert("Got the GPS location!");
+
+        locationText.innerHTML = "Latitude: " + position.coords.latitude + "<br />" + "Longitude: " + position.coords.longitude + "<hr />";
+    },
+
+    gpsOnError : function(error){
+        alert("Code: " + error.code + "\n" + "Message: " + error.message + "\n");
     }
 };
 

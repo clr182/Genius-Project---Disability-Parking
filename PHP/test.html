@@ -35,26 +35,10 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(63.675, 22.7048),
-                zoom: 16});
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP});
 
-            google.maps.event.addListenerOnce(map, 'idle', function() {
-                lat2 = map.getBounds().getNorthEast().lat();
-                lat1 = map.getBounds().getSouthWest().lat();
-                lng2 = map.getBounds().getNorthEast().lng();
-                lng1 = map.getBounds().getSouthWest().lng();
-
-                updateMarkers();
-            });
-
-            // TODO: add way to only load points within the current view
-
-            var infoWindow = new google.maps.InfoWindow;
-        }
-
-        function updateMarkers(){
-            var params = "lat1=" + lat1 + "&lat2=" + lat2 + "&lng1=" + lng1 + "&lng2=" + lng2;
-
-            downloadUrl('GetNearSpots.php', params, function(data) {
+                downloadUrl('GetAllSpots.php', function(data) {
                 var xml = data.responseXML;
                 var markers = xml.documentElement.getElementsByTagName('marker');
                 Array.prototype.forEach.call(markers, function(markerElem) {
@@ -86,9 +70,13 @@
                     });
                 });
             });
+
+            // TODO: add way to only load points within the current view
+
+            var infoWindow = new google.maps.InfoWindow;
         }
 
-        function downloadUrl(url, params, callback) {
+        function downloadUrl(url, callback) {
             var request = new XMLHttpRequest();
 
             request.onreadystatechange = function() {
@@ -98,7 +86,7 @@
                 }
             };
 
-            request.open('GET', url + "?" + params, true);
+            request.open('GET', url, true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(null);
         }

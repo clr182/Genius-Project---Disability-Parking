@@ -6,12 +6,33 @@ $conn = openConnection();
 $sql = "SELECT * FROM spots";
 $result = $conn->query($sql);
 
-if($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()){
-        echo "pid: " . $row["pid"] . "<br />address: " . $row["address"] . "<br/>latitude, longitude: " . $row["latitude"] . ", " . $row["longitude"] . "<br />";
+$xml = generateXML($result);
+
+return null;
+
+/**
+ * Function to transform the markers to XML
+ */
+function generateXML($markersArray){
+    // Start the XML file, create parent node
+    $dom = new DOMDocument("1.0");
+    $node = $dom->createElement("markers");
+    $parnode = $dom->appendChild($node);
+
+    // Iterate through the rows, adding XML nodes to each
+    while($row = $markersArray->fetch_assoc()){
+        $node = $dom->createElement("marker");
+        $newnode = $parnode->appendChild($node);
+        $newnode->setAttribute("id", $row['pid']);
+        $newnode->setAttribute("address", $row['address']);
+        $newnode->setAttribute("lat", $row['latitude']);
+        $newnode->setAttribute("lng", $row['longitude']);
     }
-}
-else{
-    echo "No spots found.";
+
+    header("Content-Type:text/xml");
+
+    echo $dom->saveXML();
+
+    return $dom->saveXML();
 }
 ?>

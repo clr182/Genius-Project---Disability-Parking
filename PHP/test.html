@@ -26,15 +26,35 @@
             }
         };
 
+        var map = null;
+        var lat1 = 0;
+        var lat2 = 0;
+        var lng1 = 0;
+        var lng2 = 0;
+
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(63.67, 22.7048),
-                zoom: 16
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(63.675, 22.7048),
+                zoom: 16});
+
+            google.maps.event.addListenerOnce(map, 'idle', function() {
+                lat2 = map.getBounds().getNorthEast().lat();
+                lat1 = map.getBounds().getSouthWest().lat();
+                lng2 = map.getBounds().getNorthEast().lng();
+                lng1 = map.getBounds().getSouthWest().lng();
+
+                updateMarkers();
             });
 
-            var infoWindow = new google.maps.InfoWindow;
+            // TODO: add way to only load points within the current view
 
-            downloadUrl('GetNearSpots.php', function(data) {
+            var infoWindow = new google.maps.InfoWindow;
+        }
+
+        function updateMarkers(){
+            var params = "lat1=" + lat1 + "&lat2=" + lat2 + "&lng1=" + lng1 + "&lng2=" + lng2;
+
+            downloadUrl('GetNearSpots.php', params, function(data) {
                 var xml = data.responseXML;
                 var markers = xml.documentElement.getElementsByTagName('marker');
                 Array.prototype.forEach.call(markers, function(markerElem) {
@@ -68,19 +88,18 @@
             });
         }
 
-        function downloadUrl(url, callback) {
-            var request = window.ActiveXObject ?
-                new ActiveXObject('Microsoft.XMLHTTP') :
-                new XMLHttpRequest;
+        function downloadUrl(url, params, callback) {
+            var request = new XMLHttpRequest();
 
             request.onreadystatechange = function() {
-                if(request.readyState == 4) {
+                if(request.readyState == 4 && request.status == 200) {
                     request.onreadystatechange = doNothing;
                     callback(request, request.status);
                 }
             };
 
-            request.open('GET', url, true);
+            request.open('GET', url + "?" + params, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(null);
         }
 

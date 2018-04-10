@@ -53,6 +53,8 @@
                 zoom: 16,
                 mapTypeId: google.maps.MapTypeId.ROADMAP});
 
+                openSpotPreview();
+
                 downloadUrl('GetNearestSpot.php', function(data) {
                 var xml = data.responseXML;
                 var markers = xml.documentElement.getElementsByTagName('marker');
@@ -89,13 +91,15 @@
                     infowincontent.appendChild(dstnc);
                     infowincontent.appendChild(document.createElement('br'));
 
-                    var button = document.createElement('button');
-                    button.textContent = "Report";
-                    button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
-                    button.addEventListener('click', function() {
+                    var report_button = document.createElement('button');
+                    report_button.textContent = "Report";
+                    report_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+                    report_button.addEventListener('click', function() {
                         reportSpot(id);
                     });
-                    infowincontent.appendChild(button);
+                    infowincontent.appendChild(report_button);
+
+                    
 
                     var comments = document.createElement('table');
                     comments.setAttribute("id", "comment_table_" + id);
@@ -112,7 +116,8 @@
                         label: icon.label
                     });
                     marker.addListener('click', function() {
-                        openSpotPreview(infoWindow, infowincontent, map, marker, id);
+                        infoWindow.setContent(infowincontent);
+                        infoWindow.open(map, marker);
                     });
                 });
             });
@@ -156,16 +161,12 @@
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4 && xhr.status == 200){
                     xhr.onreadystatechange = doNothing;
-                    alert("Comments finished loading!");
                 }
             }
 
             xhr.open("POST", "GetCommentsSpot.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.send("id=" + id);
-
-            infoWindow.setContent(infowincontent);
-            infoWindow.open(map, marker);
         }
     </script>
     <script async defer 

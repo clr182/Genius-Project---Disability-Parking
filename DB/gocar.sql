@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2018 at 08:30 AM
+-- Generation Time: Apr 10, 2018 at 02:30 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -25,6 +25,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reports`
+--
+
+CREATE TABLE `reports` (
+  `rid` int(11) NOT NULL,
+  `ip` varchar(15) NOT NULL,
+  `pid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`rid`, `ip`, `pid`) VALUES
+(6, '::1', 6),
+(7, '::1', 1),
+(9, '::1', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `spots`
 --
 
@@ -42,11 +63,19 @@ CREATE TABLE `spots` (
 
 INSERT INTO `spots` (`pid`, `address`, `latitude`, `longitude`, `image`) VALUES
 (1, 'Pietarsaaren raatihuone, 68600 Pietarsaari, Finland', 63.674049, 22.704838, NULL),
-(2, 'Kanavapuistikko 13, 68600 Pietarsaari, Finland', 63.675419, 22.705685, NULL);
+(2, 'Kanavapuistikko 13, 68600 Pietarsaari, Finland', 63.675419, 22.705685, NULL),
+(6, 'Runebergsgatan 9, 68600 Jakobstad, Finland', 63.674198, 22.705938, 'images/1523344224.PNG');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `pid` (`pid`);
 
 --
 -- Indexes for table `spots`
@@ -59,10 +88,26 @@ ALTER TABLE `spots`
 --
 
 --
+-- AUTO_INCREMENT for table `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `spots`
 --
 ALTER TABLE `spots`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `spots` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,7 +5,7 @@
     <title>Google Maps API test</title>
     <style>
         #map {
-            height: 100%;
+            height: 95%;
         }
 
         html, body {
@@ -17,6 +17,14 @@
 </head>
 
 <body>
+    <div id="searchbar">
+        <form action="<?php echo htmlspecialchars('GetNearestSpot.php'); ?>" method="post">
+            Latitude: <input type="text" name="latitude">
+            Longitude: <input type="text" name="longitude">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
     <div id="map"></div>
 
     <script>
@@ -45,11 +53,19 @@
                     var id = markerElem.getAttribute('id');
                     var name = markerElem.getAttribute('address');
                     var address = markerElem.getAttribute('address');
+                    var image = markerElem.getAttribute('image');
                     var point = new google.maps.LatLng(
                         parseFloat(markerElem.getAttribute('lat')),
                         parseFloat(markerElem.getAttribute('lng'))
                     );
                     var infowincontent = document.createElement('div');
+
+                    var img = document.createElement('img');
+                    img.src = image;
+                    img.style.cssText = "display:block;margin-left:auto;margin-right:auto;height:100px;width:100px;";
+                    infowincontent.appendChild(img);
+                    infowincontent.appendChild(document.createElement('br'));
+
                     var strong = document.createElement('strong');
                     strong.textContent = name;
                     infowincontent.appendChild(strong);
@@ -62,6 +78,7 @@
 
                     var button = document.createElement('button');
                     button.textContent = "Report";
+                    button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
                     infowincontent.appendChild(button);
 
                     var icon = customLabel["spot"] || {};

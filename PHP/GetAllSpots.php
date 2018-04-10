@@ -27,6 +27,7 @@ function generateXML($markersArray){
         $newnode->setAttribute("address", $row['address']);
         $newnode->setAttribute("lat", $row['latitude']);
         $newnode->setAttribute("lng", $row['longitude']);
+        $newnode->setAttribute("image", $row['image']);
     }
 
     header("Content-Type:text/xml");

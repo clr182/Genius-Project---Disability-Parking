@@ -56,8 +56,14 @@
                     infowincontent.appendChild(document.createElement('br'));
 
                     var text = document.createElement('text');
-                    text.textContent = address;
+                    text.textContent = point;
                     infowincontent.appendChild(text);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var button = document.createElement('button');
+                    button.textContent = "Report";
+                    infowincontent.appendChild(button);
+
                     var icon = customLabel["spot"] || {};
                     var marker = new google.maps.Marker({
                         map: map,

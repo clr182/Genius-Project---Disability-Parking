@@ -97,6 +97,14 @@
                     });
                     infowincontent.appendChild(button);
 
+                    var comments = document.createElement('table');
+                    comments.setAttribute("id", "comment_table_" + id);
+
+                    var row = document.createElement('tr');
+                    comments.appendChild(row);
+
+                    infowincontent.appendChild(comments);
+
                     var icon = customLabel["spot"] || {};
                     var marker = new google.maps.Marker({
                         map: map,
@@ -104,8 +112,7 @@
                         label: icon.label
                     });
                     marker.addListener('click', function() {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
+                        openSpotPreview(infoWindow, infowincontent, map, marker, id);
                     });
                 });
             });
@@ -140,8 +147,25 @@
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "ReportSpot.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            var pidMessage = "pid=" + pid;
-            xhr.send(pidMessage);
+            xhr.send("pid=" + pid);
+        }
+
+        function openSpotPreview(infoWindow, infowincontent, map, marker, id){
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    xhr.onreadystatechange = doNothing;
+                    alert("Comments finished loading!");
+                }
+            }
+
+            xhr.open("POST", "GetCommentsSpot.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("id=" + id);
+
+            infoWindow.setContent(infowincontent);
+            infoWindow.open(map, marker);
         }
     </script>
     <script async defer 

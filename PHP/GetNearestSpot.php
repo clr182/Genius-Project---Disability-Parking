@@ -19,9 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $temp = sortNearestSpots($result, $latitude, $longitude);
 
-        //$xml = generateXML($temp);
+        $xml = generateXML($temp);
 
-        return null;
+        return $xml;
     }
 }
 
@@ -43,15 +43,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Calculate distance to marker
             $distance = calculateGPSDistance($latitudeSpot, $longitudeSpot, $latitude, $longitude);
-            $distances[] = $distance;
+            $spots[$i]["distance"] = $distance;
         }
 
         // Bubble sort the markers by distance
         do {
             $swapped = false;
             for($i = 0; $i < count($spots) - 1; $i++){
-                if($distances[$i] > $distances[$i + 1]){
-                    list($distances[$i + 1], $distances[$i]) = array($distances[$i], $distances[$i + 1]);
+                if($spots[$i]["distance"] > $spots[$i + 1]["distance"]){
                     list($spots[$i + 1], $spots[$i]) = array($spots[$i], $spots[$i + 1]);
 
                     $swapped = true;
@@ -59,8 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         } while($swapped);
 
-        var_dump($spots);
-        var_dump($distances);
+        return $spots;
     }
 
     /**
@@ -81,6 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $newnode->setAttribute("lat", $row['latitude']);
             $newnode->setAttribute("lng", $row['longitude']);
             $newnode->setAttribute("image", $row['image']);
+            $newnode->setAttribute("distance", $row['distance']);
         }
 
         header("Content-Type:text/xml");

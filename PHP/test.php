@@ -25,6 +25,13 @@
         </form>
     </div>
 
+    <div id="reportbar">
+        <form action="<?php echo htmlspecialchars('ReportSpot.php'); ?>" method="post">
+            Spot id: <input type="text" name="pid">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
     <div id="map"></div>
 
     <script>
@@ -42,11 +49,11 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(63.675, 22.7048),
+                center: new google.maps.LatLng(63.67419759459405, 22.705937792731675),
                 zoom: 16,
                 mapTypeId: google.maps.MapTypeId.ROADMAP});
 
-                downloadUrl('GetAllSpots.php', function(data) {
+                downloadUrl('GetNearestSpot.php', function(data) {
                 var xml = data.responseXML;
                 var markers = xml.documentElement.getElementsByTagName('marker');
                 Array.prototype.forEach.call(markers, function(markerElem) {
@@ -54,6 +61,7 @@
                     var name = markerElem.getAttribute('address');
                     var address = markerElem.getAttribute('address');
                     var image = markerElem.getAttribute('image');
+                    var distance = markerElem.getAttribute('distance');
                     var point = new google.maps.LatLng(
                         parseFloat(markerElem.getAttribute('lat')),
                         parseFloat(markerElem.getAttribute('lng'))
@@ -76,9 +84,17 @@
                     infowincontent.appendChild(text);
                     infowincontent.appendChild(document.createElement('br'));
 
+                    var dstnc = document.createElement('text');
+                    dstnc.textContent = Math.ceil(distance) + " meters away";
+                    infowincontent.appendChild(dstnc);
+                    infowincontent.appendChild(document.createElement('br'));
+
                     var button = document.createElement('button');
                     button.textContent = "Report";
                     button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+                    button.addEventListener('click', function() {
+                        reportSpot(id);
+                    });
                     infowincontent.appendChild(button);
 
                     var icon = customLabel["spot"] || {};
@@ -109,12 +125,24 @@
                 }
             };
 
-            request.open('GET', url, true);
+            var position = map.getCenter();
+            var latitude = position.lat();
+            var longitude = position.lng();
+
+            request.open('POST', url, true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send(null);
+            request.send("latitude=" + latitude + "&longitude=" + longitude);
         }
 
         function doNothing(){};
+
+        function reportSpot(pid) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "ReportSpot.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var pidMessage = "pid=" + pid;
+            xhr.send(pidMessage);
+        }
     </script>
     <script async defer 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap">

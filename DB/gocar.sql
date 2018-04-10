@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2018 at 02:30 PM
+-- Generation Time: Apr 10, 2018 at 02:38 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -25,23 +25,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `cid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `user_ip` varchar(15) NOT NULL,
+  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`cid`, `pid`, `text`, `user_ip`, `time_created`) VALUES
+(1, 6, 'Pretty nice spot, wide for bigger cars.', '192.168.1.1', '2018-04-10 12:38:14');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
 CREATE TABLE `reports` (
   `rid` int(11) NOT NULL,
   `ip` varchar(15) NOT NULL,
-  `pid` int(11) NOT NULL
+  `pid` int(11) NOT NULL,
+  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reports`
 --
 
-INSERT INTO `reports` (`rid`, `ip`, `pid`) VALUES
-(6, '::1', 6),
-(7, '::1', 1),
-(9, '::1', 2);
+INSERT INTO `reports` (`rid`, `ip`, `pid`, `time_created`) VALUES
+(6, '::1', 6, '2018-04-10 12:36:04'),
+(7, '::1', 1, '2018-04-10 12:36:04'),
+(9, '::1', 2, '2018-04-10 12:36:04');
 
 -- --------------------------------------------------------
 
@@ -54,21 +76,29 @@ CREATE TABLE `spots` (
   `address` varchar(255) NOT NULL,
   `latitude` float(10,6) NOT NULL,
   `longitude` float(10,6) NOT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `time_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `spots`
 --
 
-INSERT INTO `spots` (`pid`, `address`, `latitude`, `longitude`, `image`) VALUES
-(1, 'Pietarsaaren raatihuone, 68600 Pietarsaari, Finland', 63.674049, 22.704838, NULL),
-(2, 'Kanavapuistikko 13, 68600 Pietarsaari, Finland', 63.675419, 22.705685, NULL),
-(6, 'Runebergsgatan 9, 68600 Jakobstad, Finland', 63.674198, 22.705938, 'images/1523344224.PNG');
+INSERT INTO `spots` (`pid`, `address`, `latitude`, `longitude`, `image`, `time_created`) VALUES
+(1, 'Pietarsaaren raatihuone, 68600 Pietarsaari, Finland', 63.674049, 22.704838, NULL, '2018-04-10 12:36:31'),
+(2, 'Kanavapuistikko 13, 68600 Pietarsaari, Finland', 63.675419, 22.705685, NULL, '2018-04-10 12:36:31'),
+(6, 'Runebergsgatan 9, 68600 Jakobstad, Finland', 63.674198, 22.705938, 'images/1523344224.PNG', '2018-04-10 12:36:31');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `pid` (`pid`);
 
 --
 -- Indexes for table `reports`
@@ -88,6 +118,12 @@ ALTER TABLE `spots`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
@@ -102,6 +138,12 @@ ALTER TABLE `spots`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `spots` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reports`

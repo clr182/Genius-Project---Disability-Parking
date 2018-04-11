@@ -9,7 +9,7 @@ INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\pl
 INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:1-17:12
 INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:1-17:12
 	package
-		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:102-135
+		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:102-128
 		INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -19,7 +19,7 @@ INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\pl
 	android:hardwareAccelerated
 		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:136-194
+		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:129-187
 	android:versionCode
 		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
 		INJECTED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml
@@ -52,7 +52,7 @@ ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platf
 		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
 	android:icon
 		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
-activity#io.cordova.hellocordova.MainActivity
+activity#io.cordova.gocar.MainActivity
 ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
 	android:label
 		ADDED from D:\Repos\Genius-Project---Disability-Parking\Project_Disability\platforms\android\app\src\main\AndroidManifest.xml:6:97-134

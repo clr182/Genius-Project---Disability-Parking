@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package io.cordova.hellocordova;
+package io.cordova.gocar;
 
 public final class R {
   public static final class drawable {

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Apr 11 10:56:56 EEST 2018
+#Wed Apr 11 11:26:18 EEST 2018
 76.base=D\:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 5.base=D\:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 42.base=D\:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\assets\\debug

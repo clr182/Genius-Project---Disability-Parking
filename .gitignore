@@ -22,10 +22,10 @@
 hs_err_pid*
 
 # Android Files
-/platforms/android/gradlew.bat
-/platforms/android/build
-/platforms/android/gradle
-/platforms/android/libs
-/platforms/android/gradlew.bat
-/platforms/android/CordovaLib/build
-/platforms/android/.gradle
+Project_Disability/platforms/android/gradlew.bat
+Project_Disability/platforms/android/build
+Project_Disability/platforms/android/gradle
+Project_Disability/platforms/android/libs
+Project_Disability/platforms/android/gradlew.bat
+Project_Disability/platforms/android/CordovaLib/build
+Project_Disability/platforms/android/.gradle

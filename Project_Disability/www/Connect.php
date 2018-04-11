@@ -1,5 +1,5 @@
 <?php
-define('DB_SERVER', 'localhost');
+define('DB_SERVER', '10.0.2.2'); // Temporary, ip address on the android emulator
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'gocar');

@@ -1,53 +1,266 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Main menu</title>
+<style>
+* {box-sizing: border-box;}
 
-            <div id="location">
-                <p class="location_text">Location unknown</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
-</html>
+html, body {
+    font-family: "Lato", sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 95%;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #e9e9e9;
+}
+
+.topnav .search-container {
+    float: right;
+}
+
+.topnav input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+    background: #ccc;
+}
+
+.topnav .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.topnav .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.topnav .sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.topnav .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html" id="index">HOME</a>
+        <a href="alarm.html" id="alarm" >Alarm</a>
+        <a href="share.html" id="share">Share</a>
+        <a href="contact.html" id="nurse">Contact nurse</a>
+        <a href="new_place.html" id="place">Add new place</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer;padding:8px" onclick="openNav()">&#9776;</span>
+
+    <div class="search-container">
+        <form action="something.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div id="map"></div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+     
+     <script>
+        var customLabel = {
+            spot: {
+                label: 'P'
+            }
+        };
+
+        var map = null;
+        var lat1 = 0;
+        var lat2 = 0;
+        var lng1 = 0;
+        var lng2 = 0;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(63.67419759459405, 22.705937792731675),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP});
+
+                openSpotPreview();
+
+                downloadUrl('GetNearestSpot.php', function(data) {
+                var xml = data.responseXML;
+                var markers = xml.documentElement.getElementsByTagName('marker');
+                Array.prototype.forEach.call(markers, function(markerElem) {
+                    var id = markerElem.getAttribute('id');
+                    var name = markerElem.getAttribute('address');
+                    var address = markerElem.getAttribute('address');
+                    var image = markerElem.getAttribute('image');
+                    var distance = markerElem.getAttribute('distance');
+                    var point = new google.maps.LatLng(
+                        parseFloat(markerElem.getAttribute('lat')),
+                        parseFloat(markerElem.getAttribute('lng'))
+                    );
+                    var infowincontent = document.createElement('div');
+
+                    var img = document.createElement('img');
+                    img.src = image;
+                    img.style.cssText = "display:block;margin-left:auto;margin-right:auto;height:100px;width:100px;";
+                    infowincontent.appendChild(img);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var strong = document.createElement('strong');
+                    strong.textContent = name;
+                    infowincontent.appendChild(strong);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var text = document.createElement('text');
+                    text.textContent = point;
+                    infowincontent.appendChild(text);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var dstnc = document.createElement('text');
+                    dstnc.textContent = Math.ceil(distance) + " meters away";
+                    infowincontent.appendChild(dstnc);
+                    infowincontent.appendChild(document.createElement('br'));
+
+                    var report_button = document.createElement('button');
+                    report_button.textContent = "Report";
+                    report_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+                    report_button.addEventListener('click', function() {
+                        reportSpot(id);
+                    });
+                    infowincontent.appendChild(report_button);
+
+                    
+
+                    var comments = document.createElement('table');
+                    comments.setAttribute("id", "comment_table_" + id);
+
+                    var row = document.createElement('tr');
+                    comments.appendChild(row);
+
+                    infowincontent.appendChild(comments);
+
+                    var icon = customLabel["spot"] || {};
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: point,
+                        label: icon.label
+                    });
+                    marker.addListener('click', function() {
+                        infoWindow.setContent(infowincontent);
+                        infoWindow.open(map, marker);
+                    });
+                });
+            });
+
+            // TODO: add way to only load points within the current view
+
+            var infoWindow = new google.maps.InfoWindow;
+        }
+
+        function downloadUrl(url, callback) {
+            var request = new XMLHttpRequest();
+
+            request.onreadystatechange = function() {
+                if(request.readyState == 4 && request.status == 200) {
+                    request.onreadystatechange = doNothing;
+                    callback(request, request.status);
+                }
+            };
+
+            var position = map.getCenter();
+            var latitude = position.lat();
+            var longitude = position.lng();
+
+            request.open('POST', url, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("latitude=" + latitude + "&longitude=" + longitude);
+        }
+
+        function doNothing(){};
+
+        function reportSpot(pid) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "ReportSpot.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("pid=" + pid);
+        }
+
+        function openSpotPreview(infoWindow, infowincontent, map, marker, id){
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    xhr.onreadystatechange = doNothing;
+                }
+            }
+
+            xhr.open("POST", "GetCommentsSpot.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("id=" + id);
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap" type="text/javascript"></script>
+</body>
+</html> 

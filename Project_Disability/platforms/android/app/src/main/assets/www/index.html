@@ -3,108 +3,29 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>Main menu</title>
-<style>
-* {box-sizing: border-box;}
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-html, body {
-    font-family: "Lato", sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+<link rel="stylesheet" href="css/manu_style.css">
 
-#map {
-    height: 95%;
-}
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
 
-.topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-}
-
-.topnav .search-container {
-    float: right;
-}
-
-.topnav input[type=text] {
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    font-size: 17px;
-}
-
-.topnav .search-container button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.topnav .search-container button:hover {
-    background: #ccc;
-}
-
-.topnav .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.topnav .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.topnav .sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.topnav .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
+<title>Main menu</title>
 </head>
 <body>
 
 <div class="topnav">
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.html" id="index">HOME</a>
-        <a href="alarm.html" id="alarm" >Alarm</a>
-        <a href="share.html" id="share">Share</a>
-        <a href="contact.html" id="nurse">Contact nurse</a>
-        <a href="new_place.html" id="place">Add new place</a>
+        <a href="index.html" id="index"><span>♿</span> HOME</a>
+        <a href="#" id="carpark"><span>🚗</span> Parked car</a>
+        <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
+        <a href="share.html" id="share"><span>📤</span> Share</a>
+        <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
+        <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
     </div>
 
-    <span style="font-size:30px;cursor:pointer;padding:8px" onclick="openNav()">&#9776;</span>
+    <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
     <div class="search-container">
         <form action="something.php">
@@ -116,151 +37,7 @@ html, body {
 
 <div id="map"></div>
 
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-     
-     <script>
-        var customLabel = {
-            spot: {
-                label: 'P'
-            }
-        };
-
-        var map = null;
-        var lat1 = 0;
-        var lat2 = 0;
-        var lng1 = 0;
-        var lng2 = 0;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(63.67419759459405, 22.705937792731675),
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP});
-
-                openSpotPreview();
-
-                downloadUrl('GetNearestSpot.php', function(data) {
-                var xml = data.responseXML;
-                var markers = xml.documentElement.getElementsByTagName('marker');
-                Array.prototype.forEach.call(markers, function(markerElem) {
-                    var id = markerElem.getAttribute('id');
-                    var name = markerElem.getAttribute('address');
-                    var address = markerElem.getAttribute('address');
-                    var image = markerElem.getAttribute('image');
-                    var distance = markerElem.getAttribute('distance');
-                    var point = new google.maps.LatLng(
-                        parseFloat(markerElem.getAttribute('lat')),
-                        parseFloat(markerElem.getAttribute('lng'))
-                    );
-                    var infowincontent = document.createElement('div');
-
-                    var img = document.createElement('img');
-                    img.src = image;
-                    img.style.cssText = "display:block;margin-left:auto;margin-right:auto;height:100px;width:100px;";
-                    infowincontent.appendChild(img);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var strong = document.createElement('strong');
-                    strong.textContent = name;
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var text = document.createElement('text');
-                    text.textContent = point;
-                    infowincontent.appendChild(text);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var dstnc = document.createElement('text');
-                    dstnc.textContent = Math.ceil(distance) + " meters away";
-                    infowincontent.appendChild(dstnc);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var report_button = document.createElement('button');
-                    report_button.textContent = "Report";
-                    report_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
-                    report_button.addEventListener('click', function() {
-                        reportSpot(id);
-                    });
-                    infowincontent.appendChild(report_button);
-
-                    
-
-                    var comments = document.createElement('table');
-                    comments.setAttribute("id", "comment_table_" + id);
-
-                    var row = document.createElement('tr');
-                    comments.appendChild(row);
-
-                    infowincontent.appendChild(comments);
-
-                    var icon = customLabel["spot"] || {};
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: point,
-                        label: icon.label
-                    });
-                    marker.addListener('click', function() {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
-                    });
-                });
-            });
-
-            // TODO: add way to only load points within the current view
-
-            var infoWindow = new google.maps.InfoWindow;
-        }
-
-        function downloadUrl(url, callback) {
-            var request = new XMLHttpRequest();
-
-            request.onreadystatechange = function() {
-                if(request.readyState == 4 && request.status == 200) {
-                    request.onreadystatechange = doNothing;
-                    callback(request, request.status);
-                }
-            };
-
-            var position = map.getCenter();
-            var latitude = position.lat();
-            var longitude = position.lng();
-
-            request.open('POST', url, true);
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send("latitude=" + latitude + "&longitude=" + longitude);
-        }
-
-        function doNothing(){};
-
-        function reportSpot(pid) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "ReportSpot.php", true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.send("pid=" + pid);
-        }
-
-        function openSpotPreview(infoWindow, infowincontent, map, marker, id){
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState == 4 && xhr.status == 200){
-                    xhr.onreadystatechange = doNothing;
-                }
-            }
-
-            xhr.open("POST", "GetCommentsSpot.php", true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.send("id=" + id);
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap" type="text/javascript"></script>
+<div id="overlay" onclick="closeNav()"></div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap" type="text/javascript"></script>
 </body>
 </html> 

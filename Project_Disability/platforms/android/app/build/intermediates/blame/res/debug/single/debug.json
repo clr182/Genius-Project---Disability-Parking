@@ -8,10 +8,6 @@
         "source": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\src\\main\\res\\drawable-port-hdpi\\screen.png"
     },
     {
-        "merged": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
-        "source": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
-    },
-    {
         "merged": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi_screen.png.flat",
         "source": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\src\\main\\res\\drawable-land-mdpi\\screen.png"
     },
@@ -58,10 +54,6 @@
     {
         "merged": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxxhdpi_screen.png.flat",
         "source": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\src\\main\\res\\drawable-port-xxxhdpi\\screen.png"
-    },
-    {
-        "merged": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
-        "source": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
     },
     {
         "merged": "D:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi_icon.png.flat",

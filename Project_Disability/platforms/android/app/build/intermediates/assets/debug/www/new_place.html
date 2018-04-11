@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" href="css/manu_style.css">
 
@@ -10,18 +11,19 @@
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="index.html" id="index">HOME</a>
-  <a href="alarm.html" id="alarm" >Alarm</a>
-  <a href="share.html" id="share">Share</a>
-  <a href="contact.html" id="nurse">Contact nurse</a>
-  <a href="new_place.html" id="place">Add new place</a>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html" id="index"><span>♿</span> HOME</a>
+    <a href="#" id="carpark"><span>🚗</span> Parked car</a>
+    <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
+    <a href="share.html" id="share"><span>📤</span> Share</a>
+    <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
+    <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
 </div>
 
-<div id="main">
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-</div>
+<span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<div id="overlay" onclick="closeNav()"></div>
 
 <h1>ADD NEW PLACE</h1>
      

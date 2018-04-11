@@ -16,7 +16,7 @@ function initMap() {
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP});
 
-        //openSpotPreview();
+        openSpotPreview();
 
         downloadUrl('GetNearestSpot.php', function(data) {
         var xml = data.responseXML;

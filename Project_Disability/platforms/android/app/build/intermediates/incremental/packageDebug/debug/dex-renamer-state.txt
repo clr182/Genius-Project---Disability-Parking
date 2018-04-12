@@ -1,4 +1,0 @@
-#Wed Apr 11 11:41:40 EEST 2018
-base.0=D\:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-renamed.0=classes.dex
-file.0=D\:\\Repos\\Genius-Project---Disability-Parking\\Project_Disability\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

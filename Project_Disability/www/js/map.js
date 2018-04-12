@@ -18,7 +18,7 @@ function initMap() {
 
         openSpotPreview();
 
-        downloadUrl('GetNearestSpot.php', function(data) {
+        downloadUrl('http://10.0.2.2/genius/GetNearestSpot.php', function(data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {
@@ -94,7 +94,7 @@ function downloadUrl(url, callback) {
     var request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
-        if(request.readyState == 4 && request.status == 200) {
+        if(request.readyState == 4) {
             request.onreadystatechange = doNothing;
             callback(request, request.status);
         }

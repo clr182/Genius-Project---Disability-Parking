@@ -11,6 +11,8 @@ var lng1 = 0;
 var lng2 = 0;
 var userLocation = null;
 
+var ipaddress = "192.168.182.30";
+
 function initMap() {
     userLocation = new google.maps.LatLng(63.67419759459405, 22.705937792731675);
     map = new google.maps.Map(document.getElementById('map'), {
@@ -20,7 +22,7 @@ function initMap() {
 
         openSpotPreview();
 
-        downloadUrl('http://192.168.182.30/genius/GetNearestSpot.php', function(data) {
+        downloadUrl('http://' + ipaddress + '/genius/GetNearestSpot.php', function(data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {
@@ -123,7 +125,22 @@ function doNothing(){};
 
 function reportSpot(pid) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ReportSpot.php", true);
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4) {
+            if(xhr.responseText == "Success"){
+                alert("Parking spot reported successfully!");
+            }
+            else if(xhr.responseText == "Reported"){
+                alert("You have reported this parking spot already!");
+            }
+            else{
+                alert("An error has happened. Try again later.");
+            }
+        }
+    }
+
+    xhr.open("POST", "http://" + ipaddress + "/genius/ReportSpot.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("pid=" + pid);
 }

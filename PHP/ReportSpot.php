@@ -7,8 +7,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(!(isset($_POST['pid']))){
         echo "pid is not set!";
 
-        var_dump($_POST);
-
         return null;
     }
     else{
@@ -43,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if($result->num_rows > 0){
                         echo "The user has already reported this spot.";
 
-                        return null;
+                        echo "Reported";
                     }
                     else{
                         // Send the report to the database
@@ -51,14 +49,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($stmt = $conn->prepare($sql)){
                             $stmt->bind_param("si", $ip, $pid);
                             $stmt->execute();
+
+                            echo "Success";
                         }
                     }
                 }
             }
             else{
-                echo "The reported spot doesn't exist.";
-
-                return null;
+                // The reported spot doesn't exist
+                echo "Error";
             }
         }
     }

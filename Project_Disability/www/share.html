@@ -8,6 +8,7 @@
 <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
 
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 
 </head>
 <body>
@@ -36,8 +37,72 @@
     <h2>Note:</h2>
 <textarea style="width: 300px; height: 100px; border-radius: 15px; font-size: 20px;font-style: italic">Write a note...</textarea>
 <br>
-<input type="button" value="📤" style="font-size: 30px; padding: 20px; text-align: center; text-decoration: none; margin-left: 110px; border-radius: 50%; background-color: deepskyblue">
+<input type="button" value="📤" style="font-size: 30px; padding: 20px; text-align: center; text-decoration: none; margin-left: 110px; border-radius: 50%; background-color: deepskyblue" onclick="sendSms()">
 </form>
+
+<script>
+  var latitude, longitude;
+
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+
+  function showPosition(position){
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    document.getElementById('location').innerText = "Location: " + latitude + "," + longitude;
+  }
+
+  function checkSMSPermission() {
+        function success(hasPermission) { 
+            if (hasPermission) {
+              alert('We have SMS permission');
+              sendSMS();
+            }
+            else {
+                // show a helpful message to explain why you need to require the permission to send a SMS
+                // read http://developer.android.com/training/permissions/requesting.html#explain for more best practices
+            }
+        };
+        function error(e) { alert('Something went wrong:' + e); };
+        sms.hasPermission(success, error);
+  }
+  function requestSMSPermission() {
+        var success = function (hasPermission) { 
+            if (!hasPermission) {
+                sms.requestPermission(function() {
+                    console.log('[OK] Permission accepted')
+                }, function(error) {
+                    console.info('[WARN] Permission not accepted')
+                    // Handle permission not accepted
+                })
+            }
+        };
+        var error = function (e) { alert('Something went wrong:' + e); };
+        sms.hasPermission(success, error);
+  }
+  function sendSms() {
+        alert('Sending SMS...');
+        var number = ""; // Find way to get a number to send to
+        var message = "geo:" + latitude + "," + longitude;
+        console.log("number=" + number + ", message= " + message);
+        alert("number=" + number + ", message= " + message);
+
+        //CONFIGURATION
+        var options = {
+            replaceLineBreaks: false, // true to replace \n by a new line, false by default
+            android: {
+                intent: ''
+            }
+        };
+
+        alert("options: " + options);
+
+        function success() { alert('Message sent successfully'); };
+        function error(e) { alert('Message Failed:' + e); };
+        sms.send(number, message, options, success, error);
+  }
+</script>
      
 </body>
 </html> 

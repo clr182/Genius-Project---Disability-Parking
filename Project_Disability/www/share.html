@@ -5,32 +5,38 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" href="css/manu_style.css">
+<link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
 
 <script type="text/javascript" src="js/menu.js"></script>
 
 </head>
 <body>
 
+<div class="topnav">
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html" id="index"><span>♿</span> HOME</a>
-    <a href="#" id="carpark"><span>🚗</span> Parked car</a>
+    <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
     <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
     <a href="share.html" id="share"><span>📤</span> Share</a>
     <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
     <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
-</div>
+  </div>
 
-<span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
 
 <div id="overlay" onclick="closeNav()"></div>
 
 <h1>SHARE</h1>
     
-<form action="#" name="kolorki">
-<textarea style="width: 300px; height: 100px; border-radius: 15px"></textarea>
+<form action="#" name="share">
+ <h2>Location</h2>
+<div id="location" style="width: 300px; height: 100px;border: 1px; border-radius: 15px">Location</div>
+    <h2>Note:</h2>
+<textarea style="width: 300px; height: 100px; border-radius: 15px; font-size: 20px;font-style: italic">Write a note...</textarea>
 <br>
-<input type="button" value="Send">
+<input type="button" value="📤" style="font-size: 30px; padding: 20px; text-align: center; text-decoration: none; margin-left: 110px; border-radius: 50%; background-color: deepskyblue">
 </form>
      
 </body>

@@ -60,21 +60,23 @@ function initMap() {
             infowincontent.appendChild(dstnc);
             infowincontent.appendChild(document.createElement('br'));
 
-            var report_button = document.createElement('button');
-            report_button.textContent = "Report";
-            report_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
-            report_button.addEventListener('click', function() {
-                reportSpot(id);
-            });
-            infowincontent.appendChild(report_button);
-
             var navigate_button = document.createElement('button');
             navigate_button.textContent = "Navigate";
             navigate_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+            navigate_button.className = "button navigate_button";
             navigate_button.addEventListener('click', function() {
                 navigateToSpot(id, latitude, longitude);
             });
             infowincontent.appendChild(navigate_button);
+
+            var report_button = document.createElement('button');
+            report_button.textContent = "Report";
+            report_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+            report_button.className = "button report_button";
+            report_button.addEventListener('click', function() {
+                reportSpot(id);
+            });
+            infowincontent.appendChild(report_button);
 
             var comments = document.createElement('table');
             comments.setAttribute("id", "comment_table_" + id);

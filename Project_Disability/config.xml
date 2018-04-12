@@ -16,6 +16,8 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="http://10.0.2.2/genius/*" />
+    <allow-navigation href="http://*.google.com" />
+    <allow-navigation href="https://*.google.com" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/icon/android/ldpi.png" />
@@ -29,5 +31,6 @@
     </platform>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-directions" spec="^0.4.4" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

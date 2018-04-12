@@ -9,16 +9,18 @@ var lat1 = 0;
 var lat2 = 0;
 var lng1 = 0;
 var lng2 = 0;
+var userLocation = null;
 
 function initMap() {
+    userLocation = new google.maps.LatLng(63.67419759459405, 22.705937792731675);
     map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(63.67419759459405, 22.705937792731675),
+        center: userLocation,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP});
 
         openSpotPreview();
 
-        downloadUrl('http://10.0.2.2/genius/GetNearestSpot.php', function(data) {
+        downloadUrl('http://192.168.182.30/genius/GetNearestSpot.php', function(data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {
@@ -27,9 +29,11 @@ function initMap() {
             var address = markerElem.getAttribute('address');
             var image = markerElem.getAttribute('image');
             var distance = markerElem.getAttribute('distance');
+            var latitude = parseFloat(markerElem.getAttribute('lat'));
+            var longitude = parseFloat(markerElem.getAttribute('lng'));
             var point = new google.maps.LatLng(
-                parseFloat(markerElem.getAttribute('lat')),
-                parseFloat(markerElem.getAttribute('lng'))
+                latitude,
+                longitude
             );
             var infowincontent = document.createElement('div');
 
@@ -62,7 +66,13 @@ function initMap() {
             });
             infowincontent.appendChild(report_button);
 
-            
+            var navigate_button = document.createElement('button');
+            navigate_button.textContent = "Navigate";
+            navigate_button.style.cssText = "display:block;margin-left:auto;margin-right:auto;";
+            navigate_button.addEventListener('click', function() {
+                navigateToSpot(id, latitude, longitude);
+            });
+            infowincontent.appendChild(navigate_button);
 
             var comments = document.createElement('table');
             comments.setAttribute("id", "comment_table_" + id);
@@ -116,6 +126,10 @@ function reportSpot(pid) {
     xhr.open("POST", "ReportSpot.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("pid=" + pid);
+}
+
+function navigateToSpot(pid, latitude, longitude) {
+    window.open("geo:0,0?q=" + latitude + "," + longitude, "_system");
 }
 
 function openSpotPreview(infoWindow, infowincontent, map, marker, id){

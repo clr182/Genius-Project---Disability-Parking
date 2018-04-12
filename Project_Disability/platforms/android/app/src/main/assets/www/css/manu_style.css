@@ -40,14 +40,17 @@ html, body {
 
 .topnav .search-container {
     float: right;
+    width: calc(100% - 50px);
 }
 
 .topnav input[type=text] {
+    float: left;
     padding: 6px;
     border: none;
     margin-top: 8px;
     margin-bottom: 8px;
     font-size: 17px;
+    width: calc(100% - 5px);
 }
 
 .topnav .search-container button {

@@ -28,16 +28,13 @@
     <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
     <div class="search-container">
-        <form action="something.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        <input id="pac-input" class="controls" type="text" placeholder="Search..." name="search">
     </div>
 </div>
 
 <div id="map"></div>
 
 <div id="overlay" onclick="closeNav()"></div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap" type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&libraries=places&callback=initMap" type="text/javascript"></script>
 </body>
 </html> 

@@ -33,6 +33,21 @@ html, body {
     cursor: pointer;
 }
 
+.button_alarm {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0px 10px grey;
+    
+}
+
 .report_button {
     background-color: red;
 }
@@ -44,6 +59,11 @@ html, body {
     border-style: solid;
     border-width: 0px;
     border-bottom-width: 1px;
+}
+
+.topnav_carpark {
+    overflow: hidden;
+    background-color: #e9e9e9;
 }
 
 .topnav .search-container {

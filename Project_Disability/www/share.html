@@ -19,7 +19,7 @@
     <a href="index.html" id="index"><span>♿</span> HOME</a>
     <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
     <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
-    <a href="share.html" id="share"><span>📤</span> Share</a>
+    <a href="#" id="share"><span>📤</span> Send location</a>
     <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
     <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
   </div>
@@ -29,9 +29,15 @@
 
 <div id="overlay" onclick="closeNav()"></div>
 
-<h1>SHARE</h1>
+<h1>SEND LOCATION</h1>
     
 <form action="#" name="share">
+    <h2>Person to send location to</h2>
+    <select>
+        <option value="Nurse">Nurse</option>
+        <option value="Child">Son</option>
+        <option value="Volunteer">Volunteer group</option>
+    </select>
  <h2>Location</h2>
 <div id="location" style="width: 300px; height: 100px;border: 1px; border-radius: 15px">Location</div>
     <h2>Note:</h2>

@@ -6,30 +6,50 @@
 
 <link rel="stylesheet" href="css/manu_style.css">
 <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+<link rel="stylesheet" href="css/new_place.css">
 
 <script type="text/javascript" src="js/menu.js"></script>
 
 </head>
 <body>
 
-<div class="topnav">
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html" id="index"><span>♿</span> HOME</a>
     <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
     <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
-    <a href="share.html" id="share"><span>📤</span> Share</a>
+    <a href="share.html" id="share"><span>📤</span> Send location</a>
     <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
-    <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
-  </div>
-
-  <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <a href="#" id="place"><span>➕</span> Add new place</a>
 </div>
+
+<span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
 <div id="overlay" onclick="closeNav()"></div>
 
 <h1>ADD NEW PLACE</h1>
-     
+<h2>Location:</h2>
+    <form action="#" name="new_place">
+<label for="street">Street:</label>
+    <br>
+    <input type="text" name="street" value="">
+    <br>
+<label for="number">Number:</label>
+    <br>
+    <input type="text" name="number" value="">
+    <br>
+<label for="code">Code:</label>
+    <br>
+    <input type="text" name="code" value="">
+    <br>
+<label for="City">City:</label>
+    <br>
+    <input type="text" name="city" value="">
+        <br>
+        <br>
+    <button style="margin-left: 30px; border-radius: 50%; background-color: aliceblue; "><img src="img/map.png" style="height: 80px; width: 80px; padding-top: 15px; padding-bottom: 10px"></button>
+    <button style="margin-left: 50px; border-radius: 50%; background-color: aliceblue; "><img src="img/add.png" style="height: 80px;width: 80px; padding-top: 10px"></button>
+    </form>
 </body>
 </html> 
 

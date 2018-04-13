@@ -5,35 +5,45 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" href="css/manu_style.css">
- <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
    
 <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/alarm.js"></script>
 
 </head>
 <body>
-<div class="topnav">
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.html" id="index"><span>♿</span> HOME</a>
-        <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
-        <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
-        <a href="share.html" id="share"><span>📤</span> Share</a>
-        <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
-        <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
-    </div>
-
-    <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html" id="index"><span>♿</span> HOME</a>
+    <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
+    <a href="#" id="alarm" ><span>⏰</span> Alarm</a>
+    <a href="share.html" id="share"><span>📤</span> Send location</a>
+    <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
+    <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
 </div>
+
+<span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
 <div id="overlay" onclick="closeNav()"></div>
     
 <div style="position: relative;">
-    <img src="img/clock.png"/>
     <div><h1>ALARM</h1></div>
-    <div>Place for timer</div>
+    <img src="img/clock.png" style="width: 200px; height: 200px; margin-left: 50px"/>
+    <div style="border-radius: 4px; margin-left: 50px; border: 3px; border-color: indianred; text-align: center; font-size: 28px; padding: 20px; width: 200px; cursor: pointer">Place for timer</div>    
 </div>
+    <p><button class="button_alarm" onclick="myFunction()" style="margin-left: 90px"><span id="mySpan">START</span></button></p>
 
-     
+
+<script>
+function myFunction() {
+    var x = document.getElementById("mySpan");
+    if (x.innerHTML === "START") {
+        x.innerHTML = "STOP   ";
+    } else {
+        x.innerHTML = "START";
+    }
+}
+</script>
 </body>
 </html> 
 

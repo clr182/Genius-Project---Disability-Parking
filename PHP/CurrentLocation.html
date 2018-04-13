@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+
+     <h1> we are here </h1>
+        
+        <form action="insertCarSpot.php" method="post">
+                       
+        <table border = "3" width = "50%" align = "center">
+            <tr>    
+                <td><label for="Latitude"> Latitude: </label></td>
+                <td><input type="number" step="0.0000000001" id = "Latitude" name = "Latitude" required></td>
+            </tr>
+            
+            <tr>
+                <td><label for="Longitude"> Longitude: </label></td>
+                <td><input type="number" step="0.0000000001" id = "Longitude" name = "Longitude" required></td>
+            </tr>
+            
+            <tr>
+                <td><label for="Accuracy"> Accuracy of reading: </label></td>
+                <td><input type="number" step="0.0000000001" id = "Accuracy" name = "Accuracy" required></td>
+            </tr>
+            <tr>
+                <td><label for="Timestamp"> Time of Reading: </label></td>
+                <td><input type="number" step="0.0000000001" id = "Timestamp" name = "Timestamp" required></td>
+            </tr>
+            
+           
+        
+        
+        <input type="submit" value="Add Record">
+        
+        
+        
+        
+        </form>
+
+-->
+
+<script>
+var x = document.getElementById("demo");
+var latitude, longitude;
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    latitude = position.coords.latitude.toFixed(10);
+    longitude = position.coords.longitude.toFixed(10);
+    
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude + "<br>Accuracy: " +
+    position.coords.accuracy + "<br>Timestamp: "+ position.timestamp;
+    
+    document.getElementById("Latitude").value = latitude;
+    document.getElementById("Longitude").value = longitude;
+    document.getElementById("Accuracy").value = position.coords.accuracy;
+    document.getElementById("Timestamp").value = position.timestamp;
+
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+
+</body>
+</html>

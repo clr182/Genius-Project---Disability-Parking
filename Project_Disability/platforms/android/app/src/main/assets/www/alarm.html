@@ -26,13 +26,14 @@
 
 <div id="overlay" onclick="closeNav()"></div>
     
-<div style="position: relative;">
-    <div><h1>ALARM</h1></div>
-    <img src="img/clock.png" style="width: 200px; height: 200px; margin-left: 50px"/>
-    <div style="border-radius: 4px; margin-left: 50px; border: 3px; border-color: indianred; text-align: center; font-size: 28px; padding: 20px; width: 200px; cursor: pointer">Place for timer</div>    
+<div id="content">
+                <div><h1>ALARM</h1></div>
+                <img src="img/clock.png" style="width: 200px; height: 200px;"/>
+                <div style="border-radius: 4px; border: 3px; border-color: indianred; text-align: center; font-size: 28px; padding: 20px; cursor: pointer">Place for timer</div>    
+                <p><button class="button_alarm" onclick="myFunction()"><span id="mySpan">START</span></button></p>
+            
+            
 </div>
-    <p><button class="button_alarm" onclick="myFunction()" style="margin-left: 90px"><span id="mySpan">START</span></button></p>
-
 
 <script>
 function myFunction() {

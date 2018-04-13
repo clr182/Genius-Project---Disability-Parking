@@ -8,6 +8,15 @@ html, body {
     background-color: lightsteelblue;
 }
 
+#content {
+    font-weight: bold;
+    text-align: center;
+}
+
+#content h1 {
+    color: #0000CE;
+}
+
 #map {
     height: 92%;
 }

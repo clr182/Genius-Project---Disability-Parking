@@ -34,28 +34,16 @@
         <h3 id="location">Location:</h3>
     <button style="border-radius: 50%; background-color: aliceblue;" onclick="getGPSCoordinates()"><img src="img/map.png" style="height: 80px;width: 80px; padding-top: 10px;padding-bottom: 10px"></button>
     <h3> If you can't find your current location, write it down</h3>
-    <form action="#" name="new_place">
-<label for="street">Street:</label>
+<label for="street">Address:</label>
     <br>
-    <input type="text" name="street" value="">
-    <br>
-<label for="number">Number:</label>
-    <br>
-    <input type="text" name="number" value="">
-    <br>
-<label for="code">Code:</label>
-    <br>
-    <input type="text" name="code" value="">
-    <br>
-<label for="City">City:</label>
-    <br>
-    <input type="text" name="city" value="">
+    <input type="text" name="address" value="">
         <br>
+        <h3>Add image</h3>
+        <input type="file" name="spot_image" id="spot_image">
         <br>
     <h3>Submit parking spot</h3>
-    <button style="border-radius: 50%; background-color: aliceblue; padding-left: 20px "><img src="img/add.png" style="height: 80px; width: 60px; padding-top: 15px; padding-bottom: 10px"></button>
-    
-    </form>
+    <button style="border-radius: 50%; background-color: aliceblue; padding-left: 20px " onclick="addParkingSpot()"><img src="img/add.png" style="height: 80px; width: 60px; padding-top: 15px; padding-bottom: 10px"></button>
+    <br><br>
 </div>
 
 <script>

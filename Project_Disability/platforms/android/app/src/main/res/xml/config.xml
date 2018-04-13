@@ -31,9 +31,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="http://10.0.2.2/genius/*" />
+    <allow-navigation href="http://10.0.2.2/genius" />
     <allow-navigation href="http://*.google.com" />
     <allow-navigation href="https://*.google.com" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-intent href="*" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="res/icon/android/ldpi.png" />
     <icon density="mdpi" src="res/icon/android/mdpi.png" />

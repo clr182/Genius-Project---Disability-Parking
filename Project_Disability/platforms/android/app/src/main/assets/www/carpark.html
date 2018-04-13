@@ -19,29 +19,25 @@
 <div class="topnav_carpark">
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.html" id="index"><span>♿</span> HOME</a>
-        <a href="#" id="carpark"><span>🚗</span> Parked car</a>
+        <a href="spotfinder.html" id="index"><span>♿</span> HOME</a>
+        <a href="#" id="carpark"><span>🚗</span> My car</a>
         <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
         <a href="share.html" id="share"><span>📤</span> Send location</a>
         <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
-        <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
+        <a href="new_place.html" id="place"><span>➕</span> Add new parking spot</a>
+        <a href="#" id="settings"><span>⚙️</span> Settings</a>
     </div>
 
     <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     
     
-<form action="#" name="share">
- <h2>Location</h2>
-<div id="location" style="width: 300px; height: 100px;border: 1px; border-radius: 15px">Location</div>
-<input type="button" value="🚗" style="font-size: 30px; padding: 20px; text-align: center; text-decoration: none; margin-left: 110px; border-radius: 50%; background-color: lightblue">
-</form>
-
-    <div class="search-container">
-        <form action="something.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
+<div id="content">
+        <form action="#" name="share">
+                <h2>MY CAR</h2>
+               <div id="location" style="height: 40px;border: 1px; border-radius: 15px">Location</div>
+               <input type="button" value="🚗" style="font-size: 30px; padding: 20px; text-decoration: none; border-radius: 50%; background-color: lightblue; " />
+               </form>
+</div>
 </div>
 
 <div id="map"></div>

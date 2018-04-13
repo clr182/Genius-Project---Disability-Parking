@@ -5,7 +5,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: lightsteelblue;
+    background-color: white;
 }
 
 #content {
@@ -63,7 +63,7 @@ html, body {
 
 .topnav {
     overflow: hidden;
-    background-color: lightblue;
+    background-color: lightgray;
     height: 50px;
     border-style: solid;
     border-width: 0px;
@@ -113,7 +113,7 @@ html, body {
     z-index: 3;
     top: 0;
     left: 0;
-    background-color: darkblue;
+    background-color: #000066;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;

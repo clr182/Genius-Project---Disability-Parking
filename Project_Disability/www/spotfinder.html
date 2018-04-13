@@ -6,8 +6,6 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" href="css/manu_style.css">
-<link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
-
 
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
@@ -16,11 +14,11 @@
 </head>
 <body>
 
-<div class="topnav_carpark">
+<div class="topnav">
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="spotfinder.html" id="index"><span>♿</span> HOME</a>
-        <a href="#" id="carpark"><span>🚗</span> My car</a>
+        <a href="#" id="index"><span>♿</span> HOME</a>
+        <a href="carpark.html" id="carpark"><span>🚗</span> My car</a>
         <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
         <a href="share.html" id="share"><span>📤</span> Send location</a>
         <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
@@ -29,20 +27,15 @@
     </div>
 
     <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-    
-    
-<div id="content">
-        <form action="#" name="share">
-                <h2>MY CAR</h2>
-               <div id="location" style="height: 40px;border: 1px; border-radius: 15px">Location</div>
-               <input type="button" value="🚗" style="font-size: 30px; padding: 20px; text-decoration: none; border-radius: 50%; background-color: lightblue; " />
-               </form>
-</div>
+
+    <div class="search-container">
+        <input id="pac-input" class="controls" type="text" placeholder="Search..." name="search">
+    </div>
 </div>
 
 <div id="map"></div>
 
 <div id="overlay" onclick="closeNav()"></div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&callback=initMap" type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&libraries=places&callback=initMap" type="text/javascript"></script>
 </body>
 </html> 

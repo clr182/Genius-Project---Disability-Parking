@@ -1,0 +1,80 @@
+﻿
+
+/*Static logo loader*/
+#loader1 {
+    position:relative;
+    z-index:2;                  /*Layer 2 - forward*/
+    display: flex ;
+    margin: 50px;
+    margin-top: 204px;
+}
+/*Spinning loader*/
+#loader2 {
+    position: absolute;
+    z-index: 1; /*Layer 1 - backward*/
+    left: 47%;
+    top: 38.1%;
+    width: 8px;
+    height: 8px;
+    margin: -10px 0 0 -10px;
+    border: 8px solid #ffffff;
+    border-radius: 50%;
+    border-top: 8px solid #0000FE;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(155deg);
+    }
+    50%{
+        transform:rotate(215deg);
+    }
+    100% {
+        transform: rotate(275deg);
+        border-top-color: #ffffff;
+    }
+}
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    z-index:3;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+#myDiv {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Alegreya Sans SC';
+    font-size: 20px;
+    color: #FE004C;
+}
+
+#randomText {
+    text-align: center;
+    margin-top: 90px;
+    font-family: 'Alegreya Sans SC';
+    font-size: 20px;
+    color: #FE004C;
+}
+
+
+
+

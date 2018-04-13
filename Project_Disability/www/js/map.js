@@ -11,7 +11,7 @@ var lng1 = 0;
 var lng2 = 0;
 var userLocation = null;
 
-var ipaddress = "192.168.137.138";
+var ipaddress = "10.0.2.2";
 
 var searchBox;
 var markers = [];

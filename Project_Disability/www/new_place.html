@@ -15,12 +15,13 @@
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="index.html" id="index"><span>♿</span> HOME</a>
-    <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
+    <a href="spotfinder.html" id="index"><span>♿</span> HOME</a>
+    <a href="carpark.html" id="carpark"><span>🚗</span> My car</a>
     <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
     <a href="share.html" id="share"><span>📤</span> Send location</a>
     <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
-    <a href="#" id="place"><span>➕</span> Add new place</a>
+    <a href="#" id="place"><span>➕</span> Add new parking spot</a>
+    <a href="#" id="settings"><span>⚙️</span> Settings</a>
 </div>
 
 <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -28,30 +29,48 @@
 <div id="overlay" onclick="closeNav()"></div>
 
 <div id="content">
-        <h1>ADD NEW PLACE</h1>
-        <h2>Location:</h2>
-            <form action="#" name="new_place">
-        <label for="street">Street:</label>
-            <br>
-            <input type="text" name="street" value="">
-            <br>
-        <label for="number">Number:</label>
-            <br>
-            <input type="text" name="number" value="">
-            <br>
-        <label for="code">Code:</label>
-            <br>
-            <input type="text" name="code" value="">
-            <br>
-        <label for="City">City:</label>
-            <br>
-            <input type="text" name="city" value="">
-                <br>
-                <br>
-            <button style="margin-left: 30px; border-radius: 50%; background-color: aliceblue; "><img src="img/map.png" style="height: 80px; width: 80px; padding-top: 15px; padding-bottom: 10px"></button>
-            <button style="margin-left: 50px; border-radius: 50%; background-color: aliceblue; "><img src="img/add.png" style="height: 80px;width: 80px; padding-top: 10px"></button>
-            </form>
+        <h1>ADD NEW PARKING SPOT</h1>
+        <h2>Take your current location:</h2>
+        <h3 id="location">Location:</h3>
+    <button style="border-radius: 50%; background-color: aliceblue;" onclick="getGPSCoordinates()"><img src="img/map.png" style="height: 80px;width: 80px; padding-top: 10px;padding-bottom: 10px"></button>
+    <h3> If you can't find your current location, write it down</h3>
+    <form action="#" name="new_place">
+<label for="street">Street:</label>
+    <br>
+    <input type="text" name="street" value="">
+    <br>
+<label for="number">Number:</label>
+    <br>
+    <input type="text" name="number" value="">
+    <br>
+<label for="code">Code:</label>
+    <br>
+    <input type="text" name="code" value="">
+    <br>
+<label for="City">City:</label>
+    <br>
+    <input type="text" name="city" value="">
+        <br>
+        <br>
+    <h3>Submit parking spot</h3>
+    <button style="border-radius: 50%; background-color: aliceblue; padding-left: 20px "><img src="img/add.png" style="height: 80px; width: 60px; padding-top: 15px; padding-bottom: 10px"></button>
+    
+    </form>
 </div>
+
+<script>
+    function getGPSCoordinates() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    }
+
+  function showPosition(position){
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    document.getElementById('location').innerText = "Location: " + latitude + "," + longitude;
+  }
+</script>
 </body>
 </html> 
 

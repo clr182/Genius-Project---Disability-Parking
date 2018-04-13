@@ -6,12 +6,7 @@ showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-    if(slideIndex == 7){
-        window.location = "spotfinder.html";
-    }
-    else{
-        showSlides(slideIndex += n);
-    }
+    showSlides(slideIndex += n);
 }
 
 // Thumbnail image controls

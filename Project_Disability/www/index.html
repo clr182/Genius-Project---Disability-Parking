@@ -1,40 +1,42 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
-<link rel="stylesheet" href="css/manu_style.css">
-
-<script type="text/javascript" src="js/menu.js"></script>
-<script type="text/javascript" src="js/map.js"></script>
-
-<title>Main menu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width =device-width, initial-scale=1.0">
+    <title>goCar lab01</title>
+    <link href="css/loaderstyle.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+    <!--<meta http-equiv="refresh" content="5; url=instruction.html">-->  <!--Change screen-->
 </head>
-<body>
+<body style="margin:0; background-color:#ffffff" ;>
+    <!--*******************LOADER PAGE*******************-->
+    <!--Change color background here-->
+    <!--Static logo loader-->
 
-<div class="topnav">
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#" id="index"><span>♿</span> HOME</a>
-        <a href="carpark.html" id="carpark"><span>🚗</span> Parked car</a>
-        <a href="alarm.html" id="alarm" ><span>⏰</span> Alarm</a>
-        <a href="share.html" id="share"><span>📤</span> Send location</a>
-        <a href="contact.html" id="nurse"><span>📞</span> Contact nurse</a>
-        <a href="new_place.html" id="place"><span>➕</span> Add new place</a>
+    <div id="loader1">
+        <img src="img/logo.png" width="260" height="98"><!--Change logo here-->
+    </div>
+    <!--Spinning Loader-->
+    <div id="loader2"></div>
+    <!--Greeting Loader-->
+    <div style="display:block;" id="myDiv" class="animate-bottom">
+        <h1>Hello!</h1>                                                            <!--Greetings-->
+        <span id="randomText"></span>
     </div>
 
-    <span id="hamburger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <script>
+        document.addEventListener("deviceready", goToSpotFinder, false);
 
-    <div class="search-container">
-        <input id="pac-input" class="controls" type="text" placeholder="Search..." name="search">
-    </div>
-</div>
+        function goToSpotFinder(){
+            setTimeout(function() {
+                window.location = "instructions.html";
+            }, 2000);
+        }
+    </script>
 
-<div id="map"></div>
-
-<div id="overlay" onclick="closeNav()"></div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFddZVW6vAvTEUKNQgoMlUIGYD6uzajIY&libraries=places&callback=initMap" type="text/javascript"></script>
+    <!--*******************SRIPT SOURCES*******************-->
+    <script src="js/showRandom.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="cordova.js" type="text/javascript"></script>
 </body>
-</html> 
+</html>
